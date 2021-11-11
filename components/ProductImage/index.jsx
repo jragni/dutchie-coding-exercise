@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from './Img';
 
-Img.PropTypes = {
+Img.propTypes = {
   src: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,
