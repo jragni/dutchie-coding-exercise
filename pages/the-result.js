@@ -5,15 +5,16 @@ import React from 'react';
 import styled from 'styled-components';
 import PageWrapper from 'components/layout/page-wrapper';
 // FOR DEV
-import ProductCardItem from 'components/ProductCardItem/index';
+import ProductCard from 'components/Product/ProductCard/index.jsx';
 // END DEV
 
 // TODO add drop effect 
 // TODO learn how to toggle
-export default function ProductCard() {
+// TODO add a loding indicator 
+export default function ProductResult() {
   return (
     <PageWrapper heading='The Result' icon='menu'>
-      <ProductCardItem />
+      <ProductCard/>
     </PageWrapper>
   );
 }
