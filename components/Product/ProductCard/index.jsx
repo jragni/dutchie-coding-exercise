@@ -3,15 +3,17 @@
  * Displays the information of a product.
  */
 
-import React from 'react';
+import React from 'react'; 
 import PropTypes from 'prop-types';
 
 import Card from 'components/Card/index.jsx';
 import { 
   Wrapper,
+  ContentP,
   THCContentText,
   CBDContentText,
-  ProductFlavor,
+  Badge,
+  BadgeIcon,
   ProductPrice,
   ProductName,
 } from './Content';
@@ -32,28 +34,30 @@ export default function ProductCard({
  id = 1;
  image = 'https://s3-us-west-2.amazonaws.com/dutchie-images/e9da65afc7bcf48c3f9c6bcdd69d024d';
  name ='Purefectionery | Eclipse Gummies', 
- flavors = ['chocolate'];
  Prices = [100.02];
+ strainType = 'Sativa';
  THCContent = 20;
  CBDContent = 1;
- // END DEV TESTING
 
- //TODO: create a helper function that capitalizes the flavors
+  // format text in content
   const toUSD = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   const toPercent = new Intl.NumberFormat('en-US', { style: 'percent' });
 
   const content = (
     <Wrapper>
       <ProductPrice> {toUSD.format(Prices[0])} </ProductPrice>
-      <ProductName> {name} </ProductName>
-      { flavors && 
-        <ProductFlavor> {flavors[0]}</ProductFlavor>
-      }
-      <p>
+      <ProductName> {name } </ProductName>
+      <Badge>
+        <BadgeIcon src={"static/strain-icons/sativa.svg"}/>
+        { strainType }
+      </Badge>
+
+      <ContentP>
       { THCContent && (
-        <THCContentText> 
+        <THCContentText isCBD={CBDContent}> 
           <strong>THC: </strong> 
           { toPercent.format(THCContent / 100) } 
+          { CBDContent ? " | " : null }
         </THCContentText>
       )}
       { CBDContent && (
@@ -62,7 +66,7 @@ export default function ProductCard({
           { toPercent.format(CBDContent / 100) } 
         </CBDContentText>
       )}
-      </p>
+      </ContentP>
     </Wrapper>
   );
 
@@ -79,4 +83,3 @@ ProductCard.propTypes = {
   THCContent: PropTypes.number,
   CBDContent: PropTypes.number,
 }
-

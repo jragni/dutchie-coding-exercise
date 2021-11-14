@@ -5,4 +5,5 @@ const Content = styled.div`
   height: auto;
 `;
 
+// TODO add height constraint
 export default Content;
