@@ -3,6 +3,7 @@
  * Displays the information of a product.
  * 
  * Props: 
+ *  id: the server define id.
  *  name: name of the product flavors
  *  image: url of the image
  *  strainType: the product's strain (Indica, Sativa, Hybrid, High CBD) 
@@ -31,6 +32,7 @@ import {
 import { Wrapper } from './Wrapper';
 
 export default function ProductCard({
+  id,
   displayDetails,
   Name,
   Image,
@@ -49,7 +51,13 @@ export default function ProductCard({
 //  CBDContent = 1;
 //  displayDetails = (evt) => alert('hello') ;
 
- // TODO onclick display a modal
+// Passes the id to parent
+// TODO: review ths function
+function fetchDetails() {
+  displayDetails(id);
+}
+
+
   const content = (
     <ContentWrapper> 
       <ProductPrice> { toUSD(Prices[0]) } </ProductPrice>
@@ -59,7 +67,7 @@ export default function ProductCard({
         <THCContentText isCBD={CBDContent}> 
           <strong>THC: </strong> 
           { toPercent(THCContent / 100) }
-          { CBDContent != undefined ? " | " : null }
+          { CBDContent !== undefined ? " | " : "" }
         </THCContentText>
         <CBDContentText> 
           <strong>CBD: </strong> 
@@ -70,13 +78,14 @@ export default function ProductCard({
   );
 
   return ( 
-    <Wrapper onClick={displayDetails}>
+    <Wrapper onClick={fetchDetails}>
       <Card className="ProductCard" thumbnail={Image} content={content}/> 
     </Wrapper>
   );
 }
 
 ProductCard.propTypes = {
+  id: PropTypes.number,
   name: PropTypes.string,
   flavors: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string, 

@@ -11,11 +11,11 @@ import ProductCardList from 'components/product/ProductCardList/index.jsx';
 // TODO add drop effect 
 // TODO learn how to toggle
 // TODO add a loding indicator 
-// NOTE: ask if the page should render 
+// NOTE: ask if the page should render the Product Card List the way it is now 
 export default function ProductResult() {
   return (
     <PageWrapper heading='The Result' icon='menu'>
-      <ProductCardList products={[]}/>
-     </PageWrapper>
+      <ProductCardList />
+    </PageWrapper>
   );
 }

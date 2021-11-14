@@ -10,7 +10,7 @@
  * ProductResults -> ProductCardList -> ProductCard
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks'
 
@@ -18,37 +18,39 @@ import { PRODUCTS } from './queries';
 import { Wrapper } from './Wrapper';
 import ProductCard from '../ProductCard/index';
 
-// TODO List the products in a column layout on mobile and row on desktop.
 // TODO loading indicator
+// TODO error message component
+// FIXME: Did not expect server HTML to contain a <div> in <div>
 
-export default function ProductCardList({products}) {
+export default function ProductCardList(props) {
 
+  // Fetch data from server
   const { loading, error, data } = useQuery(PRODUCTS);
 
-  if (loading) return <i> Loading... </i>
-  if (error){  
-    console.log(error);
-    return <div> error</div> ;
-  } 
-  products = data.allProducts;
+  /* Fetches id*/
+  function displayDetails() {
+    const 
+  }
 
-  if (products.length === 0) {
+  if (loading) return <i> Loading... </i>;
+
+  if (error) {
+    return <div> {error.message} </div>;
+  }
+
+  if (data.allProducts.length === 0) {
     // TODO add an icon for empty products here
     return (<h1> No products to show</h1>)
   }
-
   return (
     <Wrapper className="ProductCardList">
-       { products.map( product => (
-          <ProductCard 
-            {...product} key={product.id} displayDetails={() => null }
-          />
-        )
-      )}
-    </Wrapper>
+       { data.allProducts.map(product => ( 
+        <ProductCard
+          {...product} 
+          key={product.id} 
+          displayDetails={ displayDetails }
+        />)
+      )} 
+    </Wrapper> 
   );
 }
-
-ProductCardList.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
-};
