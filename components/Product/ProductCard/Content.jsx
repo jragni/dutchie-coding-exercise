@@ -1,3 +1,8 @@
+/**  Content
+ *
+ * Style Components for the content of the ProductCard.
+ */
+
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -32,24 +37,4 @@ export const ContentP = styled.p`
 export const CBDContentText = styled.span`
   color: #5f6b78;
   font-size: 1rem;
-`;
-
-export const BadgeIcon = styled.img`
-  height: 1rem;
-  margin-right: 0.25rem;
-  vertical-align: middle;
-`;
-
-export const Badge = styled.span`
-  display: inline-block;
-  min-width: .5rem;
-  margin: 1rem;
-  padding: .25rem;
-  font-weight: 700;
-  font-size: 1rem;
-  text-align: center;
-  background-color: #eaeff3;
-  color: #637381;
-  border: #bbc6d3 solid 1px;
-  border-radius: .25rem;
 `;

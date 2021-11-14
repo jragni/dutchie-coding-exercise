@@ -10,6 +10,8 @@
  *  Prices: the array of prices for the product per size
  *  THCContent: THC potency 
  *  CBDContent: CBD potency
+ * 
+ * ProductCardList -> ProductCard
  */
 
 import React from 'react'; 
@@ -17,13 +19,12 @@ import PropTypes from 'prop-types';
 
 import Card from 'components/Card/index.jsx';
 import { STRAINS_IMAGE, toUSD, toPercent } from './constants';
+import Badge from 'components/Badge/badge.jsx';
 import { 
   Wrapper,
   ContentP,
   THCContentText,
   CBDContentText,
-  Badge,
-  BadgeIcon,
   ProductPrice,
   ProductName,
 } from './Content';
@@ -43,7 +44,7 @@ export default function ProductCard({
  image = 'https://s3-us-west-2.amazonaws.com/dutchie-images/e9da65afc7bcf48c3f9c6bcdd69d024d';
  name ='Purefectionery | Eclipse Gummies', 
  Prices = [100.02];
- strainType = 'Indica';
+ strainType = 'Sativa';
  THCContent = 20.25;
  CBDContent = 1;
 
@@ -52,11 +53,7 @@ export default function ProductCard({
     <Wrapper>
       <ProductPrice> { toUSD(Prices[0]) } </ProductPrice>
       <ProductName> {name } </ProductName>
-      <Badge>
-        <BadgeIcon src={ STRAINS_IMAGE[strainType] }/>
-        { strainType }
-      </Badge>
-
+      <Badge src={ STRAINS_IMAGE[strainType] } label={ strainType }/>
       <ContentP>
       { THCContent && (
         <THCContentText isCBD={CBDContent}> 
