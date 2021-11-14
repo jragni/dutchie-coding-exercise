@@ -21,7 +21,7 @@ export const ProductName = styled.p`
 export const THCContentText = styled.span`
   color: #5f6b78;
   padding-left: 1rem;
-  font-size: 1.125rem;
+  font-size: 1rem;
 `;
 
 export const ContentP = styled.p`
@@ -31,17 +31,13 @@ export const ContentP = styled.p`
 
 export const CBDContentText = styled.span`
   color: #5f6b78;
-  font-size: 1.125rem;
+  font-size: 1rem;
 `;
 
 export const BadgeIcon = styled.img`
   height: 1rem;
   margin-right: 0.25rem;
   vertical-align: middle;
-
-  ${( { strainType }) => strainType && `
-
-  `}
 `;
 
 export const Badge = styled.span`
