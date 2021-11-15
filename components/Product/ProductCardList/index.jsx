@@ -3,14 +3,14 @@
  * Component that displays the list of ProductCards.
  * 
  * Props:
- *  products: list of products
+ *  setSelectedProduct: function that accepts an id of the product
  * 
  * States: 
  * 
  * ProductResults -> ProductCardList -> ProductCard
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks'
 
@@ -22,20 +22,15 @@ import ProductCard from '../ProductCard/index';
 // TODO error message component
 // FIXME: Did not expect server HTML to contain a <div> in <div>
 
-export default function ProductCardList(props) {
+export default function ProductCardList({ getProductDetails }) {
 
   // Fetch data from server
   const { loading, error, data } = useQuery(PRODUCTS);
 
-  /* Fetches id*/
-  function displayDetails() {
-    const 
-  }
-
   if (loading) return <i> Loading... </i>;
 
   if (error) {
-    return <div> {error.message} </div>;
+    return (<div> {error.message} </div>);
   }
 
   if (data.allProducts.length === 0) {
@@ -47,8 +42,8 @@ export default function ProductCardList(props) {
        { data.allProducts.map(product => ( 
         <ProductCard
           {...product} 
+          getProductDetails={getProductDetails}
           key={product.id} 
-          displayDetails={ displayDetails }
         />)
       )} 
     </Wrapper> 

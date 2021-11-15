@@ -10,7 +10,6 @@
  *  Prices: the array of prices for the product per size
  *  THCContent: THC potency 
  *  CBDContent: CBD potency
- *  displayDetails: Shows the modal of the product with more details. 
  * 
  * ProductCardList -> ProductCard
  */
@@ -33,31 +32,33 @@ import { Wrapper } from './Wrapper';
 
 export default function ProductCard({
   id,
-  displayDetails,
   Name,
   Image,
   strainType,
   Prices,
   THCContent,
   CBDContent,
+  getProductDetails
 }) {
 
  // FOR DEV TESTING
-//  image = 'https://s3-us-west-2.amazonaws.com/dutchie-images/e9da65afc7bcf48c3f9c6bcdd69d024d';
-//  name ='Purefectionery | Eclipse Gummies', 
-//  Prices = [100.02];
-//  strainType = 'Sativa';
-//  THCContent = 20.25;
-//  CBDContent = 1;
-//  displayDetails = (evt) => alert('hello') ;
+  //  image = 'https://s3-us-west-2.amazonaws.com/dutchie-images/e9da65afc7bcf48c3f9c6bcdd69d024d';
+  //  name ='Purefectionery | Eclipse Gummies', 
+  //  Prices = [100.02];
+  //  strainType = 'Sativa';
+  //  THCContent = 20.25;
+  //  CBDContent = 1;
+  //  displayDetails = (evt) => alert('hello') ;
+  
+// end for dev testing
+  /** fetches product details and displays modal */
 
-// Passes the id to parent
-// TODO: review ths function
-function fetchDetails() {
-  displayDetails(id);
-}
+  function startProductFetch() {
+    getProductDetails({variables: { id }});
+  }
 
 
+  // Content for the card
   const content = (
     <ContentWrapper> 
       <ProductPrice> { toUSD(Prices[0]) } </ProductPrice>
@@ -78,14 +79,14 @@ function fetchDetails() {
   );
 
   return ( 
-    <Wrapper onClick={fetchDetails}>
+    <Wrapper onClick={startProductFetch}>
       <Card className="ProductCard" thumbnail={Image} content={content}/> 
     </Wrapper>
   );
 }
 
 ProductCard.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string,
   flavors: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string, 
@@ -93,5 +94,5 @@ ProductCard.propTypes = {
   Prices: PropTypes.arrayOf(PropTypes.number),
   THCContent: PropTypes.number,
   CBDContent: PropTypes.number,
-  displayDetails: PropTypes.func,
+  setSelectedProduct: PropTypes.func,
 }
