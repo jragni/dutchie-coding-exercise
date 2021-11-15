@@ -20,9 +20,10 @@ import ProductCard from '../ProductCard/index';
 
 // TODO loading indicator
 // TODO error message component
+// TODO MODAL 
 // FIXME: Did not expect server HTML to contain a <div> in <div>
 
-export default function ProductCardList({ getProductDetails }) {
+function ProductCardList({ getProductDetails, setModalActive }) {
 
   // Fetch data from server
   const { loading, error, data } = useQuery(PRODUCTS);
@@ -42,6 +43,7 @@ export default function ProductCardList({ getProductDetails }) {
        { data.allProducts.map(product => ( 
         <ProductCard
           {...product} 
+          setModalActive={setModalActive}
           getProductDetails={getProductDetails}
           key={product.id} 
         />)
@@ -49,3 +51,4 @@ export default function ProductCardList({ getProductDetails }) {
     </Wrapper> 
   );
 }
+export default ProductCardList;

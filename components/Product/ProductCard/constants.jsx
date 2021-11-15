@@ -6,12 +6,3 @@ export const STRAINS_IMAGE = {
   Indica: 'static/strain-icons/indica.svg',
   Sativa: 'static/strain-icons/sativa.svg',
 }
-export const toUSD = num => new Intl.NumberFormat('en-US', { 
-  style: 'currency',
-  currency: 'USD',
-}).format(num);
-
-export const toPercent = num => new Intl.NumberFormat( 'en-US', {
-  style: 'percent',
-  minimumFractionDigits:2,
-}).format(num);

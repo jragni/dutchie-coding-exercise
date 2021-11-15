@@ -8,6 +8,7 @@ export const PRODUCT = gql`
       Image,
       strainType,
       Prices,
+      Options,
       Description,
       effects,
       type,

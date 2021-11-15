@@ -9,15 +9,15 @@
  * States: 
  *  modalActive: Boolean that determines if the modal is active.
  * 
- * ProductResult -> { ProductCardList, Modal }
+ * ProductResult -> { ProductCardList, ProductModal }
  */
 
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import PageWrapper from 'components/layout/page-wrapper';
 // FOR DEV
-import ProductCardList from 'components/product/ProductCardList/index.jsx';
-import Modal from 'components/Modal/index.jsx';
+import ProductCardList from 'components/product/ProductCardList/index';
+import ProductModal from 'components/product/ProductModal/index';
 import { PRODUCT } from './constants';
 // END DEV
 
@@ -37,12 +37,30 @@ export default function ProductResult(props) {
       data,
     },
   ] = useLazyQuery( PRODUCT );
-  if (data) console.log('data: ', data);
+
+  if (called) {
+    console.log('called!');
+  }
+  if (called && loading ) {
+    // TODO add loading indicator
+    return <i> Loading... </i>;
+  } 
+
+  if (error) {
+    // TODO build out error messages
+    return <h1> {error.message} </h1>;
+  }
+
+  if( data ) console.log(data.Product);
+ 
   return (
     <PageWrapper heading='The Result' icon='menu'>
-      <Modal modalActive={modalActive} setModalActive={setModalActive} />
+      { data && modalActive &&
+        <ProductModal {...data.Product} modalActive={modalActive} setModalActive={setModalActive} />
+      }
       <ProductCardList 
         getProductDetails={getProductDetails} 
+        setModalActive={setModalActive}
       />
     </PageWrapper>
   );

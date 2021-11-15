@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import Wrapper from './Wrapper';
 import Thumbnail from './Thumbnail';
-import Content from './Content';
+import Content from './content';
 
 export default function Card({thumbnail, content}) {
 

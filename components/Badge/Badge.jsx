@@ -9,7 +9,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, BadgeIcon, BadgeLabel} from './Content';
+import { Wrapper, BadgeIcon, BadgeLabel} from './content';
 
 export default function Badge({src, label}) {
   return (
