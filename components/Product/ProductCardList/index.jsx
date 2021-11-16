@@ -17,9 +17,8 @@ import { useQuery } from '@apollo/react-hooks'
 import { PRODUCTS } from './queries';
 import { Wrapper } from './Wrapper';
 import ProductCard from '../ProductCard/index';
+import LoadingIndicator from 'components/LoadingIndicator/index';
 
-// TODO loading indicator
-// TODO error message component
 // FIXME: Did not expect server HTML to contain a <div> in <div>
 
 function ProductCardList({ getProductDetails, setModalActive }) {
@@ -27,16 +26,16 @@ function ProductCardList({ getProductDetails, setModalActive }) {
   // Fetch data from server
   const { loading, error, data } = useQuery(PRODUCTS);
 
-  if (loading) return <i> Loading... </i>;
+  if (loading) return <LoadingIndicator />;
 
   if (error) {
     return (<div> {error.message} </div>);
   }
 
   if (data.allProducts.length === 0) {
-    // TODO add an icon for empty products here
     return (<h1> No products to show</h1>)
   }
+
   return (
     <Wrapper className="ProductCardList">
        { data.allProducts.map(product => ( 

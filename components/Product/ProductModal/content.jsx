@@ -29,19 +29,24 @@ export const ProductName = styled.h1`
 export const FullWidth = styled.div`
   width: 100%;
 `;
+
+export const Flex = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 120%;
+`
+
 export const Flexbox = styled.span`
   display: flexbox;
   flex-wrap: wrap;
 `;
+
 export const ProductOptionContainer = styled.div`
   text-align: center; 
   border:2px solid #4999df;
   border-radius: 1rem;
   padding: .75rem;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 0rem;
-  margin-bottom: 1rem;
+  margin: 1rem .5rem .5rem;
 `;
 
 export const MarginLeft = styled.span`

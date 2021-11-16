@@ -16,6 +16,7 @@ import {
   ProductDescription,
   Aside,
   Flexbox,
+  Flex,
   MarginLeft,
   EffectsContainer,
   CBDTHCContentContainer
@@ -75,14 +76,14 @@ function ProductModal({
           <Aside>
             <ProductName> {Name} </ProductName>
 
-            <Flexbox>
+            <Flex>
               {priceAndOptions.map((entry) => (
                 <ProductOptionContainer key={`${entry[0]}-${entry[1]}`}>
                   <ProductOption> {entry[1]}</ProductOption>
                   <ProductPrice> {toUSD(entry[0])} </ProductPrice>
                 </ProductOptionContainer>
               ))}
-            </Flexbox>
+            </Flex>
 
             <Badge label={strainType} src={STRAINS_IMAGE[strainType]} />
             <Badge label={`Type: ${type}`} />

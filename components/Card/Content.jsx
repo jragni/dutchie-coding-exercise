@@ -6,5 +6,4 @@ const Content = styled.div`
   border-top: inherit; 
 `;
 
-// TODO add height constraint
 export default Content;

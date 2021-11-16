@@ -43,12 +43,10 @@ export default function ProductCard({
   setModalActive,
 }) {
 
-  // Activates modal and query's the product details
   function startProductFetch() {
     getProductDetails({variables: { id }});
     setModalActive(true);
   }
-
 
   // Content for the card
   const content = (

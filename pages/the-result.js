@@ -19,10 +19,9 @@ import PageWrapper from 'components/layout/page-wrapper';
 import ProductCardList from 'components/product/ProductCardList/index';
 import ProductModal from 'components/product/ProductModal/index';
 import { PRODUCT } from './constants';
+import LoadingIndicator from 'components/LoadingIndicator/index';
 // END DEV
 
-// TODO add drop effect 
-// TODO add a loding indicator 
 // NOTE: ask if the page should render the Product Card List the way it is now 
 export default function ProductResult(props) {
 
@@ -40,17 +39,14 @@ export default function ProductResult(props) {
   if (called) {
     console.log('called!');
   }
-  if (called && loading ) {
-    // TODO add loading indicator
-    return <i> Loading... </i>;
+  if (called && loading) {
+    return <LoadingIndicator /> 
   } 
 
   if (error) {
-    // TODO build out error messages
     return <h1> {error.message} </h1>;
   }
 
-  if( data ) console.log(data.Product);
  
   return (
     <PageWrapper heading='The Result' icon='menu'>
