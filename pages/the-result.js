@@ -22,7 +22,6 @@ import { PRODUCT } from './constants';
 // END DEV
 
 // TODO add drop effect 
-// TODO learn how to toggle
 // TODO add a loding indicator 
 // NOTE: ask if the page should render the Product Card List the way it is now 
 export default function ProductResult(props) {
@@ -56,7 +55,10 @@ export default function ProductResult(props) {
   return (
     <PageWrapper heading='The Result' icon='menu'>
       { data && modalActive &&
-        <ProductModal {...data.Product} modalActive={modalActive} setModalActive={setModalActive} />
+        <ProductModal {...data.Product} 
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+        />
       }
       <ProductCardList 
         getProductDetails={getProductDetails} 

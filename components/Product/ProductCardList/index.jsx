@@ -20,7 +20,6 @@ import ProductCard from '../ProductCard/index';
 
 // TODO loading indicator
 // TODO error message component
-// TODO MODAL 
 // FIXME: Did not expect server HTML to contain a <div> in <div>
 
 function ProductCardList({ getProductDetails, setModalActive }) {

@@ -54,7 +54,7 @@ export default function ProductCard({
   const content = (
     <ContentWrapper> 
       <ProductPrice> { toUSD(Prices[0]) } </ProductPrice>
-      <ProductName> {Name } </ProductName>
+      <ProductName> { Name } </ProductName>
       <Badge src={ STRAINS_IMAGE[strainType] } label={ strainType }/>
       <ContentP>
         <THCContentText isCBD={CBDContent}> 

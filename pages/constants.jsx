@@ -8,6 +8,8 @@ export const PRODUCT = gql`
       Image,
       strainType,
       Prices,
+      CBDContent,
+      THCContent,
       Options,
       Description,
       effects,
