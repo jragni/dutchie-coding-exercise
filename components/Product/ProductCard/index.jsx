@@ -25,7 +25,7 @@ import Box from 'components/shared/Box';
 import Font from 'components/shared/Font';
 
 import { ContentWrapper,  ProductPrice } from './content';
-import { Wrapper } from './Wrapper';
+import Wrapper from './Wrapper';
 
 export default function ProductCard({ 
   id, 
