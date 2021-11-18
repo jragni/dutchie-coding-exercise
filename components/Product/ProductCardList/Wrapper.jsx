@@ -4,7 +4,7 @@
 
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   width: 125%; 
   display: flex; 
   flex-direction: row;
@@ -12,3 +12,5 @@ export const Wrapper = styled.div`
   margin:0;
   height: auto;
 `;
+
+export default Wrapper;

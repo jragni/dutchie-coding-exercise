@@ -3,24 +3,25 @@
  * Component that displays the list of ProductCards.
  * 
  * Props:
- *  setSelectedProduct: function that accepts an id of the product
+ *  No Props
  * 
  * States: 
+ *  No States
  * 
  * ProductResults -> ProductCardList -> ProductCard
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks'
 
 import { PRODUCTS } from './queries';
-import { Wrapper } from './Wrapper';
+import Wrapper from './Wrapper';
 import ProductCard from '../ProductCard/index';
 import LoadingIndicator from 'components/LoadingIndicator/index';
 
 function ProductCardList(props) {
 
-  // Fetch data from server
+  // Fetch data of all products from server
   const { loading, error, data } = useQuery(PRODUCTS);
 
   if (loading) return <LoadingIndicator />;
@@ -35,7 +36,7 @@ function ProductCardList(props) {
 
   return (
     <Wrapper className="ProductCardList">
-       { data.allProducts.map(product => ( 
+       { data.allProducts.map( product => ( 
         <ProductCard
           {...product} 
           key={product.id} 

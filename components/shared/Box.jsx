@@ -5,48 +5,68 @@
 import styled,  { css } from 'styled-components';
 
 const Box = styled.div`
-  ${({ margin = 1}) => props.margin && css`
-    margin: ${margin}rem;
+  ${({ margin }) => margin && css`
+    margin: ${margin};
   `} 
 
-  ${({ marginLeft = 1}) => props.marginLeft && css`
-    margin-left: ${marginLeft}rem;
+  ${({ marginLeft }) => marginLeft && css`
+    margin-left: ${marginLeft};
   `} 
 
-  ${({ marginRight = 1}) => props.marginRight && css`
+  ${({ marginRight }) => marginRight && css`
     margin-right: ${marginRight}rem;
   `} 
 
-  ${({ padding = 1}) => props.padding && css`
-    padding: ${padding}rem;
+  ${({ padding }) => padding && css`
+    padding: ${padding};
   `} 
 
-  ${({ width = 100}) => props.width && css`
-    width: ${width}%;
+  ${({ paddingRight }) => paddingRight && css`
+    padding: ${paddingRight}rem;
+
+  `}
+
+  ${({ paddingLeft }) => paddingLeft && css`
+    padding: ${paddingLeft};
   `} 
 
-  ${({ maxWidth = 400}) => props.maxWidth && css`
-    max-width: ${maxWidth}px;
+  ${({ width }) => width && css`
+    width: ${width};
   `} 
 
-  ${({ height = 100}) => props.height && css`
-    height: ${height}%;
+  ${({ maxWidth }) => maxWidth && css`
+    max-width: ${maxWidth};
   `} 
 
-  ${({ maxHeight = 400}) => props.maxHeight && css`
-    max-width: ${maxHeight}px;
+  ${({ height }) => height && css`
+    height: ${height};
   `} 
 
-  ${({ display = 'block'}) => props.display && css`
+  ${({ maxHeight }) => maxHeight && css`
+    max-width: ${maxHeight};
+  `} 
+
+  ${({ display = 'block'}) => display && css`
     display: ${display};
   `} 
 
-  ${({ flexWrap = 'flex'}) => props.flexWrap && css`
+  ${({ flexWrap = 'flex'}) => flexWrap && css`
     flex-wrap: ${flexWrap};
   `} 
 
-  ${({ border = '1px black solid'}) => props.border && css`
+  ${({ border }) => border && css`
     border: ${border};
+  `} 
+  ${({ borderRadius }) => borderRadius && css`
+    border-radius: ${borderRadius};
+  `} 
+
+  ${({ textAlign }) => textAlign && css`
+    text-align: ${textAlign};
+  `} 
+
+  ${({ bgColor }) => bgColor && css`
+    background-color: ${bgColor};
   `} 
 `;
 

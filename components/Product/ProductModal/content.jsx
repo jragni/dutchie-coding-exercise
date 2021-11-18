@@ -30,46 +30,15 @@ export const ProductName = styled.h1`
 `;
 
 
-export const FullWidth = styled.div`
-  width: 100%;
-`;
-
-export const Flex = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 120%;
-`
-
-export const Flexbox = styled.span`
-  display: flexbox;
-  flex-wrap: wrap;
-`;
-
-export const ProductOptionContainer = styled.div`
-  text-align: center; 
-  border:2px solid #4999df;
-  border-radius: 1rem;
-  padding: .75rem;
-  margin: 1rem .5rem .5rem;
-`;
-
-export const MarginLeft = styled.span`
-  margin-left: 1rem;
-`;
-
 export const ProductPrice = styled.div`
   color: #4999df;
   font-size: 1rem; 
 `;
+
 export const ProductOption = styled.div`
   color: #4999df;
   font-size: 1rem; 
   margin-bottom: .25rem;
-`;
-
-export const CBDTHCContentContainer = styled.div`
-  width: 100%;
-  display: flex;
 `;
 
 export const ProductDescription = styled.p`
@@ -77,13 +46,6 @@ export const ProductDescription = styled.p`
   margin-top: 1rem;
   width: 55vw;
   line-height: 1.75rem;
-`;
-
-export const EffectsContainer = styled.div`
-  margin: .5rem;
-  padding: 1rem;
-  background: #eaeff2;
-  border-radius: 1rem;
 `;
 
 export const CloseButton = styled.button`

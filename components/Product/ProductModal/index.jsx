@@ -1,31 +1,41 @@
 /**ProductModal
  *
  * Modal that displays the products details
+ * 
+ * Props: 
+ *  Name: name of the product 
+ *  Image: string link to image source 
+ *  strainType: the type of strain ex: "Sativa", "Indica", "Hybrid"
+ *  Prices: array of prices
+ *  Options: options for size/flavor that corresponds to the price 
+ *  Description: Product description 
+ *  THCContent: THC potency  
+ *  CBDContent: CBD potency 
+ *  effects: Array of effects of the product ex: [{Inspired: 3}, {Happy: 3}]
+ *  type: type of product ex: "edible" or "flower"
+ *  modalActive: Boolean that determines whether the modal is active or not,
+ *  setModalActive: hook to set state for modal
+ *  
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
+import Font from 'components/shared/Font';
+import Box from 'components/shared/Box';
 import {
   ProductImage,
   ProductName,
-  ProductOptionContainer,
   ProductPrice,
   ProductOption,
   ProductDescription,
   Aside,
-  Flexbox,
-  Flex,
-  MarginLeft,
-  EffectsContainer,
-  CBDTHCContentContainer,
   CloseButton,
   Wrapper,
 } from './content';
-import { THCContentText, CBDContentText } from 'components/product/ProductCard/content';
 
-import Badge from 'components/Badge/Badge.jsx';
+import Badge from 'components/Badge/index';
 import { STRAINS_IMAGE } from '../ProductCard/constants';
 
 import { zip, toUSD, toPercent } from 'utils/helpers';
@@ -61,10 +71,10 @@ function ProductModal({
   // This acts as the Wrapper for the Modal
   const modalContent = {
     backgroundColor: '#fbfcfc',
+    margin: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    padding: '0.5rem',
   };
 
   if (modalActive === false) return null;
@@ -78,46 +88,80 @@ function ProductModal({
         style={{ overlay: modalOverlayStyle, content: modalContent }}
       >
         <ProductImage src={Image} />
-        <MarginLeft>
           <Aside>
             <ProductName> {Name} </ProductName>
 
-            <Flex>
+            <Box
+              className="ProductModal__OptionsContainer"
+              display="flexbox"
+              flexWrap="wrap"
+              marginLeft=".5rem"
+            >
               {priceAndOptions.map((entry) => (
-                <ProductOptionContainer key={`${entry[0]}-${entry[1]}`}>
-                  <ProductOption> {entry[1]}</ProductOption>
-                  <ProductPrice> {toUSD(entry[0])} </ProductPrice>
-                </ProductOptionContainer>
+                <Box
+                  key={`${entry[0]}-${entry[1]}`}
+                  className="ProductModal_Option"
+                  textAlign="center"
+                  border="2px solid #4999df"
+                  borderRadius="1rem"
+                  padding="0.5rem"
+                  margin="0.5rem"
+                >
+                  <ProductOption key={`${entry[0]}-${entry[1]}-option`} >
+                    {entry[1]}
+                  </ProductOption>
+                  <ProductPrice key={`${entry[0]}-${entry[1]}-value`} >
+                     {toUSD(entry[0])}
+                  </ProductPrice>
+                </Box>
               ))}
-            </Flex>
+            </Box>
 
             <Badge label={strainType} src={STRAINS_IMAGE[strainType]} />
             <Badge label={`Type: ${type}`} />
-            <CBDTHCContentContainer>
-              <THCContentText isCBD={CBDContent}>
+            <Box 
+              className="ProductModal__Potency"
+              display="flex"
+            >
+              <Font 
+                className='ProductModal__THCContent' 
+                color='#5f6b78' 
+                paddingLeft={1}
+              >
                 <strong>THC: </strong>
                 {toPercent(THCContent / 100)}
-              </THCContentText>
-              <MarginLeft>
-              <CBDContentText>
+              </Font>
+              <Font 
+                className='ProductModal__CBDContent' 
+                color='#5f6b78' 
+                paddingLeft={0.25}
+              >
                 <strong>CBD: </strong>
-                {toPercent(CBDContent / 100)}
-              </CBDContentText>
-              </MarginLeft>
-            </CBDTHCContentContainer>
+                { toPercent(CBDContent / 100) }
+              </Font>
+            </Box>
             <ProductDescription> {Description} </ProductDescription>
-
-            <Flexbox>
+              <Box
+                className="ProductModal__EffectsContainer"
+                display="flex"
+                flexWrap="wrap"
+              >
               {Object.entries(effects).map((effect) => (
-                <EffectsContainer key={`${effect[0]}-${Name} `}>
+                <Box
+                  key={`ProductModal__Effect_${effect[0]}-${Name}`}
+                  className="ProductModal__Effect"
+                  margin="0.5rem"
+                  padding="1rem"
+                  bgColor="#eaeff2"
+                  borderRadius="1rem"
+                >
                   <p>
                     {effect[0]}: {effect[1]}{' '}
                   </p>
-                </EffectsContainer>
+                </Box>
               ))}
-            </Flexbox>
+              </Box>
           </Aside>
-        </MarginLeft>
         <CloseButton onClick={closeModal}> X </CloseButton>
       </Modal>
     </Wrapper>
@@ -127,11 +171,17 @@ function ProductModal({
 ProductModal.propTypes = {
   Name: PropTypes.string,
   Image: PropTypes.string,
+  Options: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+  Description: PropTypes.string,
   strainType: PropTypes.string,
   Prices: PropTypes.arrayOf(PropTypes.number),
   Description: PropTypes.string,
   effects: PropTypes.object,
   type: PropTypes.string,
+  THCContent: PropTypes.number,
+  CBDContent: PropTypes.number,
+  modalActive: PropTypes.bool,
+  setModalActive: PropTypes.func,
 };
 
 export default ProductModal;
