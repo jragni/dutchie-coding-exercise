@@ -19,7 +19,9 @@ import {
   Flex,
   MarginLeft,
   EffectsContainer,
-  CBDTHCContentContainer
+  CBDTHCContentContainer,
+  CloseButton,
+  Wrapper,
 } from './content';
 import { THCContentText, CBDContentText } from 'components/product/ProductCard/content';
 
@@ -42,12 +44,16 @@ function ProductModal({
   modalActive,
   setModalActive,
 }) {
+
+  // NOTE: naming for props was decided to accomodate to data query.
+
   // Combined prices and options array
   const priceAndOptions = zip(Prices, Options);
 
   function closeModal() {
     setModalActive(false);
   }
+
   const modalOverlayStyle = {
     backgroundColor: 'rgba(65, 65, 65, 0.7)',
   };
@@ -64,7 +70,7 @@ function ProductModal({
   if (modalActive === false) return null;
 
   return (
-    <div onClick={closeModal}>
+    <Wrapper onClick={closeModal}>
       <Modal
         isOpen={modalActive}
         onRequestClose={closeModal}
@@ -112,8 +118,9 @@ function ProductModal({
             </Flexbox>
           </Aside>
         </MarginLeft>
+        <CloseButton onClick={closeModal}> X </CloseButton>
       </Modal>
-    </div>
+    </Wrapper>
   );
 }
 

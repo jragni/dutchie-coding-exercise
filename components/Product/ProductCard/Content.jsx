@@ -23,18 +23,22 @@ export const ProductName = styled.p`
   line-height: 1.2;
 `;
 
-export const THCContentText = styled.span`
+export const THCContentText = styled.p`
   color: #5f6b78;
   padding-left: 1rem;
   font-size: 1rem;
 `;
 
-export const ContentP = styled.p`
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-`
-
 export const CBDContentText = styled.span`
   color: #5f6b78;
   font-size: 1rem;
+  padding-left: 0.25rem;
 `;
+
+export const ContentP = styled.p`
+  width: 120%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+`

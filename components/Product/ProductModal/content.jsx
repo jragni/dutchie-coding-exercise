@@ -4,6 +4,10 @@
 
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
 export const ProductImage = styled.img`
   display: inline-block;
   width: 100%;
@@ -80,4 +84,14 @@ export const EffectsContainer = styled.div`
   padding: 1rem;
   background: #eaeff2;
   border-radius: 1rem;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  font-weight: 900;
+  color: red;
 `;

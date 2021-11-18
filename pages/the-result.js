@@ -15,16 +15,15 @@
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import PageWrapper from 'components/layout/page-wrapper';
-// FOR DEV
-import ProductCardList from 'components/product/ProductCardList/index';
+import { PRODUCT } from './gql-queries';
+import ModalContext from '../contexts/ModalContext';
+
 import ProductModal from 'components/product/ProductModal/index';
-import { PRODUCT } from './constants';
+import ProductCardList from 'components/product/ProductCardList/index';
 import LoadingIndicator from 'components/LoadingIndicator/index';
-// END DEV
 
-// NOTE: ask if the page should render the Product Card List the way it is now 
+
 export default function ProductResult(props) {
-
   const [ modalActive, setModalActive ] = useState(false);
 
   const [ 
@@ -36,9 +35,6 @@ export default function ProductResult(props) {
     },
   ] = useLazyQuery( PRODUCT );
 
-  if (called) {
-    console.log('called!');
-  }
   if (called && loading) {
     return <LoadingIndicator /> 
   } 
@@ -47,19 +43,17 @@ export default function ProductResult(props) {
     return <h1> {error.message} </h1>;
   }
 
- 
   return (
     <PageWrapper heading='The Result' icon='menu'>
+      <ModalContext.Provider value={{ getProductDetails, setModalActive }} >
       { data && modalActive &&
         <ProductModal {...data.Product} 
           modalActive={modalActive}
           setModalActive={setModalActive}
         />
       }
-      <ProductCardList 
-        getProductDetails={getProductDetails} 
-        setModalActive={setModalActive}
-      />
+      <ProductCardList />
+      </ModalContext.Provider>
     </PageWrapper>
   );
 }

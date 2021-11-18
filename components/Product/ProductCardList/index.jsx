@@ -11,7 +11,6 @@
  */
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks'
 
 import { PRODUCTS } from './queries';
@@ -19,9 +18,7 @@ import { Wrapper } from './Wrapper';
 import ProductCard from '../ProductCard/index';
 import LoadingIndicator from 'components/LoadingIndicator/index';
 
-// FIXME: Did not expect server HTML to contain a <div> in <div>
-
-function ProductCardList({ getProductDetails, setModalActive }) {
+function ProductCardList(props) {
 
   // Fetch data from server
   const { loading, error, data } = useQuery(PRODUCTS);
@@ -33,7 +30,7 @@ function ProductCardList({ getProductDetails, setModalActive }) {
   }
 
   if (data.allProducts.length === 0) {
-    return (<h1> No products to show</h1>)
+    return (<h1> No products to show </h1>)
   }
 
   return (
@@ -41,8 +38,6 @@ function ProductCardList({ getProductDetails, setModalActive }) {
        { data.allProducts.map(product => ( 
         <ProductCard
           {...product} 
-          setModalActive={setModalActive}
-          getProductDetails={getProductDetails}
           key={product.id} 
         />)
       )} 

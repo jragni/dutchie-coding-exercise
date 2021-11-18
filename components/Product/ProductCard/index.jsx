@@ -14,10 +14,10 @@
  * ProductCardList -> ProductCard
  */
 
-import React from 'react'; 
+import React, { useContext } from 'react'; 
 import PropTypes from 'prop-types';
-
 import Card from 'components/Card/index.jsx';
+import  ModalContext  from '../../../contexts/ModalContext.jsx';
 import { STRAINS_IMAGE, } from './constants';
 import Badge from 'components/Badge/badge.jsx';
 import { toUSD, toPercent } from 'utils/helpers';
@@ -39,12 +39,13 @@ export default function ProductCard({
   Prices,
   THCContent,
   CBDContent,
-  getProductDetails,
-  setModalActive,
 }) {
 
-  function startProductFetch() {
-    getProductDetails({variables: { id }});
+  const { getProductDetails, setModalActive } = useContext(ModalContext)
+
+  // On click, the modal state will be active and the product details fetched   
+  function onClickHandler() {
+    getProductDetails({variables: { id }}); 
     setModalActive(true);
   }
 
@@ -69,7 +70,7 @@ export default function ProductCard({
   );
 
   return ( 
-    <Wrapper onClick={startProductFetch}>
+    <Wrapper onClick={onClickHandler}>
       <Card className="ProductCard" thumbnail={Image} content={content}/> 
     </Wrapper>
   );
@@ -78,12 +79,9 @@ export default function ProductCard({
 ProductCard.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string,
-  flavors: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string, 
   strainType: PropTypes.string,
   Prices: PropTypes.arrayOf(PropTypes.number),
   THCContent: PropTypes.number,
   CBDContent: PropTypes.number,
-  getProductDetails: PropTypes.func,
-  setModalActive: PropTypes.func,
 }
