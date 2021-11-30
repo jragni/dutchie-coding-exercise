@@ -25,6 +25,7 @@ import LoadingIndicator from 'components/LoadingIndicator/index';
 
 export default function ProductResult(props) {
   const [ modalActive, setModalActive ] = useState(false);
+  const [ cartItems, setCartItems ] = useState([]);
 
   const [ 
     getProductDetails, { 
@@ -34,6 +35,10 @@ export default function ProductResult(props) {
       data,
     },
   ] = useLazyQuery( PRODUCT );
+
+  // TODO FOR DEV
+  console.log('cartItems: ', cartItems);
+  // END FOR DEV
 
   if (called && loading) {
     return <LoadingIndicator /> 
@@ -45,7 +50,7 @@ export default function ProductResult(props) {
 
   return (
     <PageWrapper heading='The Result' icon='menu'>
-      <ModalContext.Provider value={{ getProductDetails, setModalActive }} >
+      <ModalContext.Provider value={{ cartItems, setCartItems ,getProductDetails, setModalActive }} >
       { data && modalActive &&
         <ProductModal {...data.Product} 
           modalActive={modalActive}

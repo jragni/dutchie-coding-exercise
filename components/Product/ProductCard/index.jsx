@@ -44,6 +44,12 @@ export default function ProductCard({
     setModalActive(true);
   }
 
+  // TODO for dev, whill change on final decision
+  // On click of Add cart button, add id, Name, price to cart
+  // function onClickAddCart() {
+  //   setCartItems([...cartItems, {id, Name, }])
+  // }
+
   // Content for the card
   const content = (
     <ContentWrapper>
@@ -82,6 +88,9 @@ export default function ProductCard({
           <strong>CBD: </strong>
           {toPercent(CBDContent / 100)}
         </Font>
+        {/* TODO to refactor for more aesthetic appearance */}
+        {/* For DEV will return upon furhter study and decision */}
+        {/* <button> Add to cart</button> */}
       </Box>
     </ContentWrapper>
   );

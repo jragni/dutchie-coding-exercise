@@ -18,10 +18,11 @@
  *  
  */
 
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
+import ModalContext from '../../../contexts/ModalContext.jsx';
 import Font from 'components/shared/Font';
 import Box from 'components/shared/Box';
 import {
@@ -59,9 +60,19 @@ function ProductModal({
 
   // Combined prices and options array
   const priceAndOptions = zip(Prices, Options);
+  const { cartItems, setCartItems} = useContext(ModalContext);
+
+
 
   function closeModal() {
     setModalActive(false);
+  }
+
+  // Adds item name, price, and option to the cartItems array as an object 
+  function onClickAddToCart(entry, evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    setCartItems(items => [...items, {Name, price: entry[0], option: entry[1]}])
   }
 
   const modalOverlayStyle = {
@@ -106,6 +117,7 @@ function ProductModal({
                   borderRadius="1rem"
                   padding="0.5rem"
                   margin="0.5rem"
+                  onClick={(evt) =>{ onClickAddToCart(entry, evt)}}
                 >
                   <ProductOption key={`${entry[0]}-${entry[1]}-option`} >
                     {entry[1]}
